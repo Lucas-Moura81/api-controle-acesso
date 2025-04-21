@@ -5,5 +5,6 @@ import com.acesso.controle.adapter.entities.UsuarioEntity;
 
 
 public interface UsuarioRepository extends JpaRepository<UsuarioEntity, Long> {
+	UsuarioEntity findByEmail(String email); 
 
 }

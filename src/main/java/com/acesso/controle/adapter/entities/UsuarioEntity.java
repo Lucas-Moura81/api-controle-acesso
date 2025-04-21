@@ -3,6 +3,8 @@ package com.acesso.controle.adapter.entities;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,4 +23,7 @@ public class UsuarioEntity {
 	private String email;
 	private String senha;
 	private Boolean administrador;
+	@OneToOne
+	@JoinColumn(name = "pessoa_id")
+	private PessoaEntity pessoaEntity;
 }

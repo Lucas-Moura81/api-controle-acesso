@@ -1,9 +1,15 @@
 package com.acesso.controle.core.domain;
 
 public class Pessoa {
-	 private Long id;
+	   
+	
+	
+	    private Long id;
+	    
 	    private String nome;
 
+	    
+	    
 	    public Pessoa() {
 	    }
 

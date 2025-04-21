@@ -25,7 +25,7 @@ public class UsuarioController {
 	private final UsuarioServicePort usuarioServicePort;
 	private final UsuarioConverter usuarioConverter;
 	
-	@Operation(summary = "Criar usuáro", description = "Retorna um Objeto usuário criado")
+	@Operation(summary = "Criar usuário", description = "Retorna um Objeto usuário criado")
 	@PostMapping
   	public ResponseEntity<UsuarioDto> created(@RequestBody @Valid UsuarioDto usuarioDto)  {
 		Usuario usuario = usuarioConverter.toTomain(usuarioDto);
@@ -33,7 +33,6 @@ public class UsuarioController {
 		usuarioDto = usuarioConverter.toDto(usuario);
 		return  ResponseEntity.status(HttpStatus.CREATED).body(usuarioDto);
 	
-		
 	}
 
 }

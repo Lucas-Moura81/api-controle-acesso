@@ -14,15 +14,24 @@ import lombok.RequiredArgsConstructor;
 public class UsuarioRepositoryAdpter implements UsuarioRepositoryPort{
 	
 	private final UsuarioRepository usuarioRepository;
+	private final PessoaRepositoryAdpter pessoaRepositoryAdpter;
 	private final ModelMapper modelMapper;
 
 	@Override
 	public Usuario create(Usuario usuario) {
 		UsuarioEntity usuarioEntity = modelMapper.map(usuario, UsuarioEntity.class);
-		usuarioRepository.save(usuarioEntity);
-		return modelMapper.map(usuarioEntity, Usuario.class);
+		usuarioEntity.setPessoaEntity(pessoaRepositoryAdpter.createPessoa(usuario.getPessoa()));
+		UsuarioEntity novoUsuario = usuarioRepository.save(usuarioEntity);
+		return modelMapper.map(novoUsuario, Usuario.class);
 	}
-	
-	
+
+	@Override
+	public Usuario obtemPorEmail(String email) {
+		UsuarioEntity usuarioByEmail = usuarioRepository.findByEmail(email);
+		if(usuarioByEmail == null) {
+			return null;
+		}
+		return modelMapper.map(usuarioByEmail, Usuario.class);
+	}
 
 }
